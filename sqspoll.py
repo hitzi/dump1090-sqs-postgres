@@ -20,7 +20,7 @@ while True:
     for message in queue.receive_messages(MaxNumberOfMessages=10,WaitTimeSeconds=20):
 
         # Convert (comma separated) message into an array of values
-        field = '{0}'.format(message.body).split(',')
+        field = '{0}'.format(message.body).rstrip().split(',')
 
         # Not all valid messages have been handled. For example:
         # STA,,5,179,400AE7,10103,2008/11/28,14:58:51.153,2008/11/28,14:58:51.153,RM
