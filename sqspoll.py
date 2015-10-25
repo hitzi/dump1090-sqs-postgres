@@ -6,14 +6,14 @@ import os
 
 # Make a DB connection
 try:
-    db = dbapi2.connect (host=os.environ['DUMP1090_HOST'], database=os.environ['DUMP1090_DATABASE'], user=os.environ['DUMP1090_USER'], password=os.environ['DUMP1090_PASSWORD'])
+    db = dbapi2.connect (host=os.getenv('DUMP1090_HOST', 'dump1090'), database=os.getenv('DUMP1090_DATABASE', 'dump1090'), user=os.getenv('DUMP1090_USER', 'dump1090'), password=os.getenv('DUMP1090_PASSWORD', 'dump1090'))
 except:
     print "I am unable to connect to the database"
 cur = db.cursor()
 
 # Get the service resource
 sqs = boto3.resource('sqs')
-queue = sqs.get_queue_by_name(QueueName=os.environ['SQS_QUEUE'])
+queue = sqs.get_queue_by_name(QueueName=os.getenv('SQS_QUEUE', 'dump1090'))
 
 while True:
     # Process messages by printing out the message body
