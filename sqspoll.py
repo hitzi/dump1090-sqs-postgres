@@ -6,7 +6,7 @@ import os
 
 # Make a DB connection
 try:
-    db = dbapi2.connect (host=os.getenv('DUMP1090_HOST', 'dump1090'), database=os.getenv('DUMP1090_DATABASE', 'dump1090'), user=os.getenv('DUMP1090_USER', 'dump1090'), password=os.getenv('DUMP1090_PASSWORD', 'dump1090'))
+    db = dbapi2.connect (host=os.getenv('DUMP1090_HOST', 'localhost'), database=os.getenv('DUMP1090_DATABASE', 'dump1090'), user=os.getenv('DUMP1090_USER', 'dump1090'), password=os.getenv('DUMP1090_PASSWORD', 'dump1090'))
 except:
     print "I am unable to connect to the database"
 cur = db.cursor()
